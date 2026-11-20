@@ -1,0 +1,43 @@
+2026-11-20 17:14:29,561 | INFO | pipeline | === Inicio del pipeline (Atlas) ===
+2026-11-20 17:14:32,023 | INFO | pipeline | Conexión OK a Atlas, base 'ContentFlow' (MongoDB 8.0.39)
+2026-11-20 17:14:32,468 | INFO | pipeline | Extracción publicaciones          publicaciones  filas= 503  436 ms
+2026-11-20 17:14:32,537 | INFO | pipeline | Extracción registros_dispositivo  usuarios       filas=   9  74 ms
+2026-11-20 17:14:32,685 | INFO | pipeline | Extracción usuarios               usuarios       filas= 500  141 ms
+2026-11-20 17:14:32,836 | INFO | pipeline | Extracción actividad              publicaciones  filas= 469  151 ms
+2026-11-20 17:14:33,396 | INFO | pipeline | Extracción campanas               campañas       filas= 500  564 ms
+2026-11-20 17:14:33,547 | INFO | pipeline | Día de referencia: 2026-11-02 · publicaciones sin reacción ese día: 3
+2026-11-20 17:14:33,645 | INFO | pipeline | Tabla fact_publicaciones           503 filas × 13 columnas
+2026-11-20 17:14:33,645 | INFO | pipeline | Tabla p1_sin_reaccion_dia            3 filas ×  6 columnas
+2026-11-20 17:14:33,645 | INFO | pipeline | Tabla p2_categoria_mes              37 filas ×  6 columnas
+2026-11-20 17:14:33,646 | INFO | pipeline | Tabla dim_usuarios                 500 filas × 10 columnas
+2026-11-20 17:14:33,646 | INFO | pipeline | Tabla p3_registros_dispositivo       9 filas ×  6 columnas
+2026-11-20 17:14:33,646 | INFO | pipeline | Tabla campanas                     500 filas × 14 columnas
+2026-11-20 17:14:33,657 | INFO | pipeline | K1 Publicaciones del día sin reacción                 100.0 % (Rojo)
+2026-11-20 17:14:33,657 | INFO | pipeline | K2 Interacciones por publicación (último mes cerrado) nan int/pub (Sin datos)
+2026-11-20 17:14:33,658 | INFO | pipeline | K3 Participación de Móvil en nuevos registros         38.0 % (Amarillo)
+2026-11-20 17:14:33,658 | INFO | pipeline | K4 Cumplimiento promedio de la meta de likes          0.18 % (Rojo)
+2026-11-20 17:14:33,658 | INFO | pipeline | K5 Usuarios activos                                   93.8 % (Verde)
+2026-11-20 17:14:35,069 | INFO | pipeline | Reporte generado: C:\Users\nholc\Desktop\contentflow_proyecto\contentflow-ep3-bdy0101\reportes\reporte_kpis.html
+2026-11-20 17:14:35,069 | INFO | pipeline | === Pipeline terminado en 5.5 s ===
+2026-11-20 17:16:11,673 | INFO | pipeline | === Inicio del pipeline (Atlas) ===
+2026-11-20 17:16:13,120 | INFO | pipeline | Conexión OK a Atlas, base 'ContentFlow' (MongoDB 8.0.39)
+2026-11-20 17:16:13,515 | INFO | pipeline | Extracción publicaciones          publicaciones  filas= 500  394 ms
+2026-11-20 17:16:13,588 | INFO | pipeline | Extracción registros_dispositivo  usuarios       filas=   9  72 ms
+2026-11-20 17:16:13,732 | INFO | pipeline | Extracción usuarios               usuarios       filas= 500  144 ms
+2026-11-20 17:16:13,881 | INFO | pipeline | Extracción actividad              publicaciones  filas= 469  148 ms
+2026-11-20 17:16:14,464 | INFO | pipeline | Extracción campanas               campañas       filas= 500  581 ms
+2026-11-20 17:16:14,534 | INFO | pipeline | Registros de prueba excluidos por el filtro: 3
+2026-11-20 17:16:14,679 | INFO | pipeline | Día de referencia: 2025-07-13 · publicaciones sin reacción ese día: 3
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla fact_publicaciones           500 filas × 13 columnas
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla p1_sin_reaccion_dia            3 filas ×  6 columnas
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla p2_categoria_mes              35 filas ×  6 columnas
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla dim_usuarios                 500 filas × 10 columnas
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla p3_registros_dispositivo       9 filas ×  6 columnas
+2026-11-20 17:16:14,766 | INFO | pipeline | Tabla campanas                     500 filas × 14 columnas
+2026-11-20 17:16:14,773 | INFO | pipeline | K1 Publicaciones del día sin reacción                 75.0 % (Rojo)
+2026-11-20 17:16:14,773 | INFO | pipeline | K2 Interacciones por publicación (último mes cerrado) 2.04 int/pub (Verde)
+2026-11-20 17:16:14,773 | INFO | pipeline | K3 Participación de Móvil en nuevos registros         38.0 % (Amarillo)
+2026-11-20 17:16:14,773 | INFO | pipeline | K4 Cumplimiento promedio de la meta de likes          0.18 % (Rojo)
+2026-11-20 17:16:14,773 | INFO | pipeline | K5 Usuarios activos                                   93.8 % (Verde)
+2026-11-20 17:16:15,283 | INFO | pipeline | Reporte generado: C:\Users\nholc\Desktop\contentflow_proyecto\contentflow-ep3-bdy0101\reportes\reporte_kpis.html
+2026-11-20 17:16:15,283 | INFO | pipeline | === Pipeline terminado en 3.6 s ===
