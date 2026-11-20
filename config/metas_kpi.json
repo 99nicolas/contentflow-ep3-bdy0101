@@ -1,0 +1,8 @@
+{
+  "_nota": "Metas de cada KPI. 'sentido' indica si conviene que el valor sea mayor (mayor) o menor (menor) que la meta. 'tolerancia' es el margen (en las mismas unidades) que se considera amarillo.",
+  "K1_sin_reaccion_dia_pct": {"meta": 30, "sentido": "menor", "tolerancia": 10},
+  "K2_interacciones_por_pub_mes": {"meta": 2.0, "sentido": "mayor", "tolerancia": 0.2},
+  "K3_participacion_movil_pct": {"meta": 40, "sentido": "mayor", "tolerancia": 5},
+  "K4_cumplimiento_campanas_pct": {"meta": 100, "sentido": "mayor", "tolerancia": 20},
+  "K5_usuarios_activos_pct": {"meta": 80, "sentido": "mayor", "tolerancia": 5}
+}

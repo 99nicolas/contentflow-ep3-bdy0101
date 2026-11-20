@@ -1,0 +1,10 @@
+# Credenciales: nunca subir el .env real
+.env
+.venv/
+__pycache__/
+*.pyc
+# Archivos temporales de trabajo
+scripts/_*
+_*.py
+_*.log
+~$*
