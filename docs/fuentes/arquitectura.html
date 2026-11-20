@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>Arquitectura del flujo de datos</title>
+<style>
+body { margin:0; background:#fff; font-family:'Segoe UI', Arial, sans-serif; color:#14232D; }
+#lienzo { width:1600px; height:900px; position:relative; }
+h1 { position:absolute; left:40px; top:24px; margin:0; font-size:30px; }
+.sub { position:absolute; left:40px; top:68px; font-size:17px; color:#4A5A63; }
+.col { position:absolute; top:120px; bottom:160px; border-radius:14px; padding:16px; box-sizing:border-box; }
+.col h2 { margin:0 0 4px; font-size:15px; letter-spacing:1.5px; text-transform:uppercase; }
+.col .rol { font-size:13px; color:#4A5A63; margin-bottom:12px; }
+.c1 { left:40px; width:330px; background:#EAF4EE; border:2px solid #1E7A52; }
+.c2 { left:420px; width:430px; background:#EEF2F7; border:2px solid #2C5282; }
+.c3 { left:900px; width:300px; background:#FBF3EA; border:2px solid #B7791F; }
+.c4 { left:1250px; width:310px; background:#F4EEF7; border:2px solid #6B46C1; }
+.c1 h2 { color:#1E7A52; } .c2 h2 { color:#2C5282; } .c3 h2 { color:#B7791F; } .c4 h2 { color:#6B46C1; }
+.box { background:#fff; border:1px solid #C9D2CC; border-radius:10px; padding:10px 12px; margin-bottom:10px; font-size:14px; line-height:1.35; }
+.box b { display:block; font-size:15px; margin-bottom:2px; }
+.box code { font-family:Consolas, monospace; font-size:12.5px; color:#2C5282; }
+.mini { font-size:12.5px; color:#4A5A63; }
+.flecha { position:absolute; height:4px; background:#14232D; }
+.flecha:after { content:""; position:absolute; right:-2px; top:-8px; border-left:16px solid #14232D; border-top:10px solid transparent; border-bottom:10px solid transparent; }
+.etq { position:absolute; font-size:12.5px; background:#fff; padding:2px 6px; border:1px solid #C9D2CC; border-radius:6px; }
+.auto { position:absolute; left:40px; width:1520px; top:770px; height:72px; background:#14232D; color:#F3F4EF; border-radius:12px; padding:12px 18px; box-sizing:border-box; font-size:14px; line-height:1.45; }
+.auto b { color:#9FD3B8; }
+</style></head><body><div id="lienzo">
+<h1>ContentFlow · Arquitectura del flujo de datos (EP3)</h1>
+<div class="sub">Fuente NoSQL → extracción y transformación en Python → carga y visualización en Power BI → reporte automático de KPIs</div>
+
+<div class="col c1"><h2>1 · Fuente NoSQL</h2><div class="rol">MongoDB Atlas · Cluster0 (M0, 3 nodos, São Paulo) · base ContentFlow</div>
+  <div class="box"><b>usuarios</b><span class="mini">500 docs · genero, dispositivo, fecha_registro</span></div>
+  <div class="box"><b>publicaciones</b><span class="mini">500 docs (+3 de prueba) · categoria, tipo, fecha, hashtags[ ]</span></div>
+  <div class="box"><b>reacciones</b><span class="mini">499 docs · índice único usuario + publicación</span></div>
+  <div class="box"><b>comentarios</b><span class="mini">500 docs · likes</span></div>
+  <div class="box"><b>campañas</b><span class="mini">500 docs · publicaciones_asociadas[ ], metricas_objetivo{ }</span></div>
+  <div class="box mini">Conexión: <code>mongodb+srv</code> con TLS · credenciales en <code>.env</code> (no se sube al repo)</div>
+</div>
+
+<div class="col c2"><h2>2 · Extracción y transformación</h2><div class="rol">Python 3.12 · PyMongo · pandas · <code>scripts/pipeline.py</code></div>
+  <div class="box"><b>extraccion.py · 5 agregaciones en el servidor</b>
+    <code>$match</code> (filtro de pruebas y por día) · <code>$lookup</code> + <code>$count</code> · <code>$unwind</code> de arreglos · <code>$unionWith</code> · <code>$group</code> · lectura de campos anidados <code>metricas_objetivo.likes</code></div>
+  <div class="box"><b>transformacion.py · 18 transformaciones registradas</b>
+    Estructurales (aplanar, desanidar, agregar) · Semánticas (interacciones, sin_reaccion, segmentos, "Desktop" → "Escritorio") · Formato (fechas, mes, hora, tipos) · Limpieza (pruebas, duplicados, nulos)</div>
+  <div class="box"><b>kpis.py · 5 KPIs con meta y semáforo</b>
+    K1 sin reacción del día · K2 interacciones/publicación · K3 participación Móvil · K4 cumplimiento de campañas · K5 usuarios activos</div>
+  <div class="box"><b>Modo --offline</b><span class="mini">Reproduce el mismo resultado desde los JSON del anexo: validó que Atlas y pandas entregan tablas idénticas.</span></div>
+</div>
+
+<div class="col c3"><h2>3 · Carga</h2><div class="rol">Archivo intermedio · <code>data/processed/</code></div>
+  <div class="box"><b>contentflow_ep3.xlsx</b><span class="mini">8 hojas: fact_publicaciones, dim_usuarios, campanas, p1, p2, p3, kpis, actualizacion</span></div>
+  <div class="box"><b>CSV por tabla</b><span class="mini">misma información, legible en cualquier herramienta</span></div>
+  <div class="box"><b>kpis_historial.csv</b><span class="mini">una fila por KPI en cada ejecución (tendencia)</span></div>
+  <div class="box"><b>docs/transformaciones.csv</b><span class="mini">documentación automática de cada transformación</span></div>
+  <div class="box"><b>logs/pipeline.log</b><span class="mini">trazabilidad: filas, tiempos y KPIs</span></div>
+</div>
+
+<div class="col c4"><h2>4 · Visualización y reporte</h2><div class="rol">Power BI Desktop · reporte HTML</div>
+  <div class="box"><b>ContentFlow_EP3_Dashboard.pbix</b><span class="mini">Importa el Excel · relación dim_usuarios 1→* fact_publicaciones · 7 medidas DAX · 2 páginas con filtros</span></div>
+  <div class="box"><b>Página 1 · Operación y contenido</b><span class="mini">K1–K5 · P1 lista sin reacción · P2 categorías</span></div>
+  <div class="box"><b>Página 2 · Audiencia y campañas</b><span class="mini">P3 dispositivos · campañas · usuarios activos</span></div>
+  <div class="box"><b>reportes/reporte_kpis.html</b><span class="mini">Reporte automático con semáforo; se regenera en cada ejecución</span></div>
+</div>
+
+<div class="flecha" style="left:372px; top:400px; width:40px;"></div>
+<div class="flecha" style="left:852px; top:400px; width:40px;"></div>
+<div class="flecha" style="left:1202px; top:400px; width:40px;"></div>
+
+<div class="auto"><b>Automatización:</b> el Programador de tareas de Windows ejecuta <code style="color:#F3F4EF">ejecutar_pipeline.bat</code> cada hora (<code style="color:#F3F4EF">programar_tarea.bat</code>) → se reescriben Excel, CSV, historial y reporte HTML → en Power BI basta <b>Actualizar</b>.
+Alternativa sin archivo intermedio: <code style="color:#F3F4EF">scripts/powerbi_fuente.py</code> como origen "Script de Python" (cada Actualizar consulta Atlas en vivo).</div>
+</div></body></html>

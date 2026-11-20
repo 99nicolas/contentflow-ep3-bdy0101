@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>Boceto del dashboard final</title>
+<style>
+body { margin:0; background:#fff; font-family:'Segoe UI', Arial, sans-serif; color:#14232D; }
+#lienzo { width:1600px; height:1000px; position:relative; }
+h1 { position:absolute; left:40px; top:20px; margin:0; font-size:28px; }
+.sub { position:absolute; left:40px; top:60px; font-size:16px; color:#4A5A63; }
+.pag { position:absolute; top:100px; width:490px; height:610px; border:2px solid #14232D; border-radius:10px; background:#FAFBF9; }
+.pag .tab { position:absolute; left:0; right:0; top:0; height:38px; background:#14232D; color:#F3F4EF; border-radius:8px 8px 0 0; font-weight:600; font-size:15px; line-height:38px; padding-left:14px; }
+.w { position:absolute; border:1.5px dashed #7A8A93; border-radius:8px; background:#fff; font-size:12.5px; padding:6px 8px; box-sizing:border-box; color:#33444E; }
+.w b { display:block; font-size:13px; color:#14232D; }
+.k { background:#EAF4EE; border-color:#1E7A52; border-style:solid; }
+.n { background:#FBF3EA; border-color:#B7791F; border-style:solid; }
+.f { background:#EEF2F7; border-color:#2C5282; }
+.ley { position:absolute; left:40px; top:728px; width:1520px; font-size:14px; }
+.ley span { display:inline-block; margin-right:22px; }
+.sw { display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:-2px; margin-right:6px; }
+table { position:absolute; left:40px; top:760px; width:1520px; border-collapse:collapse; font-size:13.5px; }
+th { background:#14232D; color:#F3F4EF; text-align:left; padding:6px 8px; }
+td { border-bottom:1px solid #DDE2DE; padding:5px 8px; vertical-align:top; }
+</style></head><body><div id="lienzo">
+<h1>Boceto del dashboard final · ContentFlow</h1>
+<div class="sub">Tres páginas, una por nivel de decisión. Verde = KPI ya implementado en la EP3 · Naranjo = KPI proyectado para la entrega final · Azul = filtro</div>
+
+<div class="pag" style="left:40px"><div class="tab">1 · Operación diaria (hoy)</div>
+  <div class="w f" style="left:12px; top:50px; width:220px; height:44px"><b>Filtro: día</b>calendario, por defecto hoy</div>
+  <div class="w f" style="left:244px; top:50px; width:232px; height:44px"><b>Filtro: tipo de contenido</b>Imagen · Texto · Video</div>
+  <div class="w k" style="left:12px; top:104px; width:150px; height:84px"><b>K1</b>% publicaciones del día sin reacción</div>
+  <div class="w n" style="left:170px; top:104px; width:150px; height:84px"><b>KP1</b>Horas hasta la primera reacción</div>
+  <div class="w n" style="left:328px; top:104px; width:148px; height:84px"><b>KP2</b>Publicaciones del día vs promedio</div>
+  <div class="w" style="left:12px; top:198px; width:464px; height:250px"><b>Tabla P1 · Publicaciones sin reacción</b>fecha · id · categoría · tipo · horas sin reacción (semáforo por antigüedad) · ordenada de la más antigua a la más reciente</div>
+  <div class="w" style="left:12px; top:458px; width:464px; height:140px"><b>Línea por hora del día de hoy</b>publicaciones vs reacciones acumuladas, para detectar horas "frías"</div>
+</div>
+
+<div class="pag" style="left:555px"><div class="tab">2 · Contenido y horarios (meses)</div>
+  <div class="w f" style="left:12px; top:50px; width:220px; height:44px"><b>Filtro: período / mes</b>rango de fechas</div>
+  <div class="w f" style="left:244px; top:50px; width:232px; height:44px"><b>Filtro: categoría</b>selección múltiple</div>
+  <div class="w k" style="left:12px; top:104px; width:150px; height:84px"><b>K2</b>Interacciones por publicación</div>
+  <div class="w n" style="left:170px; top:104px; width:150px; height:84px"><b>KP3</b>Mejor franja horaria</div>
+  <div class="w n" style="left:328px; top:104px; width:148px; height:84px"><b>KP4</b>Variación mensual de K2 (%)</div>
+  <div class="w" style="left:12px; top:198px; width:464px; height:180px"><b>Barras P2 · categoría</b>interacciones por publicación del período (ya implementado)</div>
+  <div class="w" style="left:12px; top:388px; width:226px; height:210px"><b>Líneas · K2 por mes y categoría</b>tendencia de cada categoría</div>
+  <div class="w" style="left:248px; top:388px; width:228px; height:210px"><b>Mapa de calor día × hora</b>interacciones por publicación</div>
+</div>
+
+<div class="pag" style="left:1070px"><div class="tab">3 · Audiencia y campañas (años)</div>
+  <div class="w f" style="left:12px; top:50px; width:220px; height:44px"><b>Filtro: nivel de actividad</b>Alto · Medio · Bajo · Inactivo</div>
+  <div class="w f" style="left:244px; top:50px; width:232px; height:44px"><b>Filtro: objetivo de campaña</b>3 objetivos</div>
+  <div class="w k" style="left:12px; top:104px; width:110px; height:84px"><b>K3</b>% Móvil en registros</div>
+  <div class="w k" style="left:128px; top:104px; width:110px; height:84px"><b>K4</b>Cumplimiento de metas</div>
+  <div class="w k" style="left:244px; top:104px; width:110px; height:84px"><b>K5</b>Usuarios activos</div>
+  <div class="w n" style="left:360px; top:104px; width:116px; height:84px"><b>KP5</b>Retención a 30 días</div>
+  <div class="w" style="left:12px; top:198px; width:226px; height:200px"><b>Columnas 100 % · P3</b>participación por dispositivo y año (ya implementado)</div>
+  <div class="w" style="left:248px; top:198px; width:228px; height:200px"><b>Campañas</b>cumplimiento por objetivo (ya implementado) + ranking de campañas</div>
+  <div class="w" style="left:12px; top:408px; width:226px; height:190px"><b>Usuarios más activos</b>tabla con segmento (ya implementado)</div>
+  <div class="w n" style="left:248px; top:408px; width:228px; height:190px"><b>KP6 · Crecimiento de registros</b>registros por mes con línea de tendencia</div>
+</div>
+
+<div class="ley"><span><i class="sw" style="background:#EAF4EE;border:1px solid #1E7A52"></i>KPI implementado (EP3)</span><span><i class="sw" style="background:#FBF3EA;border:1px solid #B7791F"></i>KPI proyectado</span><span><i class="sw" style="background:#EEF2F7;border:1px dashed #2C5282"></i>Filtro (segmentación)</span><span><i class="sw" style="background:#fff;border:1px dashed #7A8A93"></i>Gráfico o tabla</span></div>
+<table>
+<tr><th>KPI proyectado</th><th>Nivel</th><th>Cálculo</th><th>Fuente</th><th>Meta propuesta</th></tr>
+<tr><td>KP1 Horas hasta la primera reacción</td><td>Operacional</td><td>mín(reacciones.fecha) − publicaciones.fecha_publicacion, promedio del día</td><td>publicaciones + reacciones ($lookup + $min)</td><td>≤ 6 h</td></tr>
+<tr><td>KP2 Publicaciones del día vs promedio</td><td>Operacional</td><td>publicaciones de hoy ÷ promedio diario de los últimos 30 días</td><td>publicaciones ($group por día)</td><td>≥ 100 %</td></tr>
+<tr><td>KP3 Mejor franja horaria</td><td>Táctico</td><td>hora con mayor interacciones por publicación en el período</td><td>fact_publicaciones (hora)</td><td>informativo</td></tr>
+<tr><td>KP4 Variación mensual de K2</td><td>Táctico</td><td>(K2 mes actual − K2 mes anterior) ÷ K2 mes anterior</td><td>fact_publicaciones (mes)</td><td>≥ 0 %</td></tr>
+<tr><td>KP5 Retención a 30 días</td><td>Estratégico</td><td>usuarios con actividad 30+ días después de registrarse ÷ usuarios registrados</td><td>usuarios + publicaciones + reacciones + comentarios (fechas)</td><td>≥ 40 %</td></tr>
+<tr><td>KP6 Crecimiento de registros</td><td>Estratégico</td><td>registros del mes ÷ registros del mismo mes del año anterior − 1</td><td>usuarios (fecha_registro)</td><td>≥ 10 %</td></tr>
+</table>
+</div></body></html>
