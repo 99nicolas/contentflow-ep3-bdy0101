@@ -1,0 +1,15 @@
+﻿id,pregunta,atributo,R,I,C,E,puntaje,decision,justificacion
+P1-1,P1,publicaciones.fecha_publicacion,1.0,1.0,1.0,0.2,5.00,Conservar,Sin fecha no existe 'el día'. Está en las 500 publicaciones y solo hay que convertir el tipo.
+P1-2,P1,reacciones.publicacion_id,1.0,1.0,1.0,0.3,3.33,Conservar,Es lo que dice si una publicación tiene reacciones. El índice único evita duplicados; exige un $lookup.
+P1-3,P1,publicaciones.categoria,1.0,0.3,0.9,0.4,0.68,Evaluar,"No responde la pregunta, pero sirve para ordenar la lista. Hay que normalizar el texto."
+P1-4,P1,publicaciones.hashtags,1.0,0.1,0.8,0.6,0.13,Descartar,No dice nada sobre reacciones y es un arreglo que habría que desanidar.
+P2-1,P2,publicaciones.categoria,1.0,1.0,1.0,0.2,5.00,Conservar,Es lo que se compara. Son 5 valores; solo hay que normalizar mayúsculas y espacios.
+P2-2,P2,fecha_publicacion (mes),1.0,0.8,1.0,0.3,2.67,Conservar,"Define el período, no el resultado, por eso impacto 0,8. Hay que derivar el mes."
+P2-3,P2,publicacion_id (reacciones y comentarios),1.0,1.0,1.0,0.4,2.50,Conservar,"Permite contar la interacción. Cruza dos colecciones, por eso el esfuerzo es mayor."
+P2-4,P2,publicaciones.tipo,1.0,0.3,1.0,0.4,0.75,Evaluar,"No responde la pregunta, pero sirve como filtro (Imagen, Texto, Video)."
+P2-5,P2,reacciones.tipo_reaccion,1.0,0.2,0.9,0.5,0.36,Descartar,Todas las reacciones cuentan igual para medir interacción; separarlas no cambia la respuesta.
+P3-1,P3,usuarios.dispositivo,1.0,1.0,1.0,0.2,5.00,Conservar,Es lo que se compara. Tres valores; solo hay que traducir 'Desktop' a 'Escritorio'.
+P3-2,P3,fecha_registro (año),1.0,1.0,1.0,0.3,3.33,Conservar,Define a qué año pertenece cada usuario nuevo. Hay que convertir el tipo y derivar el año.
+P3-3,P3,usuarios.genero,1.0,0.3,0.9,0.3,0.90,Evaluar,"Podría segmentar el análisis, pero no responde qué dispositivo crece."
+P3-4,P3,usuarios.pais,1.0,0.4,0.6,0.8,0.30,Descartar,205 países y el mayor tiene solo 6 usuarios: demasiado disperso para ver tendencias.
+P3-5,P3,usuarios.correo,1.0,0.1,0.9,0.5,0.18,Descartar,Dato personal que no aporta a la pregunta; no se extrae.

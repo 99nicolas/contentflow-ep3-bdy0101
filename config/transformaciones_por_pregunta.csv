@@ -1,0 +1,19 @@
+﻿id,pregunta,codigo,tipo,que_hacemos,antes,despues
+P1-1,P1,T17,Limpieza,Excluir publicaciones de prueba ($match + $regex),503 publicaciones,500 (sin las 3 'desde Postman')
+P1-2,P1,T01,Formato,Convertir la fecha a tipo fecha,texto ISO con zona,datetime 2025-07-13 12:55:38
+P1-3,P1,T03,Formato,Derivar el día,2025-07-13 12:55:38,fecha_dia = 2025-07-13
+P1-4,P1,T05,Estructural,Contar reacciones por publicación ($lookup + $count),reacciones en otra colección,pub_58 → reacciones = 0
+P1-5,P1,T18,Limpieza,No contar dos veces la misma reacción,usuario + publicación repetido,1 reacción (índice único)
+P1-6,P1,T06,Semántica,Marcar las que no tienen reacción,reacciones = 0,sin_reaccion = 1
+P1-7,P1,T07,Semántica,Calcular horas sin respuesta,publicada a las 12:55,"horas_sin_reaccion = 11,1"
+P2-1,P2,T17,Limpieza,Excluir publicaciones de prueba ($regex),503 publicaciones,500 publicaciones
+P2-2,P2,T03,Formato,Derivar el mes de la fecha,2025-03-13 06:37:59,mes = 2025-03
+P2-3,P2,T04,Semántica,Normalizar categoría y tipo,"' tecnología', 'VIDEO'","'Tecnología', 'Video'"
+P2-4,P2,T05,Estructural,Contar reacciones y comentarios ($lookup + $count),2 colecciones aparte,"pub_67 → 2 reacciones, 1 comentario"
+P2-5,P2,T06,Semántica,Calcular la interacción de cada publicación,reacciones 2 + comentarios 1,interacciones = 3
+P2-6,P2,T08,Estructural,Agrupar por mes y categoría y promediar,500 publicaciones,35 filas (7 meses × 5) + ranking
+P3-1,P3,—,Extracción,La consulta solo lee los 2 atributos conservados,documento completo del usuario,dispositivo + fecha_registro
+P3-2,P3,T09,Formato,Convertir la fecha de registro y derivar el año,texto ISO o ISODate,anio_registro = 2024
+P3-3,P3,T10,Semántica,Unificar el idioma del dispositivo,'Desktop' (164 usuarios),'Escritorio'
+P3-4,P3,—,Estructural,Contar registros por año y dispositivo ($group),500 usuarios,9 filas (3 años × 3)
+P3-5,P3,T13,Estructural,Porcentaje dentro de cada año (2023 y 2025 son años parciales),Móvil 2025: 49 registros,"38,0 % de 129"

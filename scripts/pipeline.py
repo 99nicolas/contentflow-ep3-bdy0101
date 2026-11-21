@@ -8,6 +8,7 @@ Uso:
 Salidas (se sobrescriben en cada ejecución, Power BI las relee con "Actualizar"):
     data/processed/*.csv y data/processed/contentflow_ep3.xlsx   -> modelo de Power BI
     data/processed/kpis_historial.csv                            -> evolución de los KPIs
+    data/processed/rice.csv y transformaciones_pregunta.csv      -> tablas RICE y pasos por pregunta (desde config/)
     reportes/reporte_kpis.html                                   -> reporte automático
     docs/transformaciones.csv                                    -> documentación de transformaciones
     logs/pipeline.log                                            -> trazabilidad
@@ -19,7 +20,7 @@ from datetime import datetime
 import pandas as pd
 
 import extraccion as ex
-from common import DIR_DOCS, DIR_PROCESADOS, get_db, get_logger
+from common import DIR_DOCS, DIR_PROCESADOS, ROOT, get_db, get_logger
 from kpis import calcular_kpis, guardar_historial
 from reporte import generar_reporte
 from transformacion import transformar
@@ -56,6 +57,13 @@ def ejecutar(offline: bool = False, fecha_ref: datetime | None = None, guardar: 
     for _, k in kpis.iterrows():
         log.info("%s %-50s %s %s (%s)", k["kpi"], k["nombre"], k["valor"], k["unidad"], k["estado"])
     tablas["kpis"] = kpis.drop(columns=["fecha_ejecucion"])
+
+    # Definiciones del equipo que el dashboard muestra junto a cada pregunta:
+    # tablas RICE (config/rice.csv) y pasos de transformación con su antes y después.
+    for nombre, archivo in (("rice", "rice.csv"), ("transformaciones_pregunta", "transformaciones_por_pregunta.csv")):
+        ruta = ROOT / "config" / archivo
+        if ruta.exists():
+            tablas[nombre] = pd.read_csv(ruta, encoding="utf-8-sig")
 
     if guardar:
         # 4. CARGA: archivos que lee Power BI
