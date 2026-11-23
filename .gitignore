@@ -8,3 +8,5 @@ scripts/_*
 _*.py
 _*.log
 ~$*
+# Copias de trabajo de Power BI
+powerbi/_respaldo/
