@@ -17,7 +17,7 @@ Pipeline ETL en Python que extrae datos de MongoDB Atlas con agregaciones, los t
 | Táctica | ¿Qué categoría de contenido genera más interacciones por publicación cada mes? | categoria, fecha_publicacion → mes, publicacion_id |
 | Estratégica | ¿Qué tipo de dispositivo crece más entre los usuarios nuevos, año a año? | dispositivo, fecha_registro → año |
 
-Las tablas RICE completas (con el porqué de cada puntaje), las transformaciones de cada pregunta (antes → después) y sus conclusiones están en la sección 2 del informe, en `config/rice.csv` y `config/transformaciones_por_pregunta.csv`, y en las páginas **P1 · Operacional**, **P2 · Táctica** y **P3 · Estratégica** del dashboard. El pipeline agrega ambas tablas al Excel que lee Power BI (hojas `rice` y `transformaciones_pregunta`).
+Las tablas RICE completas (con el porqué de cada puntaje), las transformaciones de cada pregunta (antes → después) y sus conclusiones están en la sección 2 del informe, en `config/rice.csv` y `config/transformaciones_por_pregunta.csv`, y en el dashboard. Cada pregunta tiene su propio dashboard en Power BI (**P1 · Operacional**, **P2 · Táctica** y **P3 · Estratégica**): KPI, un filtro con el atributo que RICE dejó como apoyo (categoría, tipo o género), el gráfico que responde la pregunta, la conclusión y, al costado, su tabla RICE y sus transformaciones. Las páginas *Operación y contenido* y *Audiencia y campañas* quedan como vista general del caso. El pipeline agrega ambas tablas al Excel que lee Power BI (hojas `rice` y `transformaciones_pregunta`).
 
 🎤 Presentación: [`docs/ContentFlow_EP3_Presentacion.pptx`](docs/ContentFlow_EP3_Presentacion.pptx)
 
